@@ -6,7 +6,7 @@ const NavBar = () => {
     return (
         <div className="px-4 py-5  mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
             <div className="relative flex grid items-center grid-cols-2 lg:grid-cols-3">
-                <ul className="flex items-center hidden space-x-8 lg:flex">
+                <ul className=" items-center hidden space-x-8 lg:flex">
                     <li>
                         <Link
                             to="/course"
@@ -130,7 +130,7 @@ const NavBar = () => {
                                     <ul className="space-y-4">
                                         <li>
                                             <Link
-                                                to="/blog"
+                                                to="/course"
                                                 aria-label="Our product"
                                                 title="Our product"
                                                 className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
