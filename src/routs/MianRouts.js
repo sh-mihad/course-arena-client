@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Blog from "../components/Blog/Blog";
 import Courses from "../components/Courses/Courses";
+import ErrorPage from "../components/ErrorPage/ErrorPage";
 import Faq from "../components/FAQ/Faq";
 import LoginForm from "../components/Forms/LoginForm";
 import RegisterForm from "../components/Forms/RegisterForm/RegisterForm";
@@ -11,6 +12,7 @@ import Main from "../layout/Main";
     {
         path:"/",
         element: <Main></Main>,
+        errorElement:<ErrorPage/> ,
         children:[
             { path:"/",element:<Home></Home>},
             { path:"course",element:<Courses/>},
