@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { UserAuth } from '../../contexts/AuthProvider';
 const LoginForm = () => {
 
-  const { loginUser} = useContext(UserAuth)
+  const { loginUser,googleSignIn,githubSignIn} = useContext(UserAuth)
 
   const HandleLogin = (e) => {
     e.preventDefault();
@@ -20,6 +20,26 @@ const LoginForm = () => {
     })
     .catch(error=>{
       console.error(error)
+    })
+  }
+
+  const handleGoogleSignIn =()=>{
+    googleSignIn()
+    .then(resutl=>{
+      const user = resutl.user;
+      console.log(user)
+    })
+    .catch(error=>{console.log(error)})
+  }
+
+  const handleGithubSignIn =()=>{
+    githubSignIn()
+    .then(result=>{
+      const user = result.user;
+
+    })
+    .catch(error=>{
+      console.log(error);
     })
   }
 
@@ -50,8 +70,8 @@ const LoginForm = () => {
             </div>
           </form>
           
-            <button className=" btn btn-outline w-10/12 mx-auto mb-3">Sign With Google</button>
-            <button className=" btn btn-outline  w-10/12 mx-auto mb-6">Sign With Github</button>
+            <button onClick={handleGoogleSignIn} className=" btn btn-outline w-10/12 mx-auto mb-3">SignIn With Google</button>
+            <button onClick={handleGithubSignIn} className=" btn btn-outline  w-10/12 mx-auto mb-6">SignIn With Github</button>
           
         </div>
       </div>
