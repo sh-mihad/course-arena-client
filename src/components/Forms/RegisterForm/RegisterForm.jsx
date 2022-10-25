@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { UserAuth } from '../../../contexts/AuthProvider';
 
 const RegisterForm = () => {
+
+ const {createUser,profileUpdate} = useContext(UserAuth)
 
     const handleRegister =(e)=>{
         e.preventDefault();
@@ -11,14 +14,29 @@ const RegisterForm = () => {
         const email = form.email.value;
         const password = form.password.value;
     
-        console.log(name,photo,email,password)
+        createUser(email,password)
+        .then((result)=>{
+          const user = result.user;
+          uppdateProfile(name,photo)
+          form.reset()
+          console.log(user);
+        })
+        .catch(error=>{
+          console.log(error)
+        })
+      }
+
+      const uppdateProfile =(name,photo)=>{
+        profileUpdate(name,photo)
+        .then(()=>{})
+        .catch((error)=>{console.error(error)})
       }
 
     return (
         <div className="hero min-h-screen  bg-base-200">
         <div className="hero-content flex-col w-full lg:flex-row-reverse">
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <h1 className="text-xl font-bold text-center mt-4">Login now!</h1>
+          <h1 className="text-xl font-bold text-center mt-4">Register now!</h1>
             <form className="card-body" onSubmit={handleRegister}>
               <div className="form-control">
                 <label className="label">
@@ -48,9 +66,11 @@ const RegisterForm = () => {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
+                <button className="btn btn-primary">Register</button>
               </div>
             </form>
+            <button className=" btn btn-outline w-10/12 mx-auto mb-3">Sign With Google</button>
+            <button className=" btn btn-outline  w-10/12 mx-auto mb-6">Sign With Github</button>
           </div>
         </div>
       </div>

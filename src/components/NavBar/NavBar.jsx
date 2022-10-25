@@ -1,8 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { UserAuth } from '../../contexts/AuthProvider';
 
 const NavBar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { user,logOut } = useContext(UserAuth)
+    console.log(user)
+
+    const handleSignOut = () => {
+        logOut()
+        .then(()=>{})
+        .catch((error)=>{console.log(error)})
+    }
+
+
     return (
         <div className="px-4 py-5  mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
             <div className="relative flex grid items-center grid-cols-2 lg:grid-cols-3">
@@ -14,7 +25,7 @@ const NavBar = () => {
                             title="Our product"
                             className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
-                           Courses
+                            Courses
                         </Link>
                     </li>
                     <li>
@@ -34,7 +45,7 @@ const NavBar = () => {
                             title="ProductBlog"
                             className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
-                           Blog
+                            Blog
                         </Link>
                     </li>
                 </ul>
@@ -50,26 +61,35 @@ const NavBar = () => {
                     </span>
                 </Link>
                 <ul className="flex items-center hidden ml-auto space-x-8 lg:flex">
-                    <li>
-                        <Link
-                            to="/login"
-                            aria-label="Sign in"
-                            title="Sign in"
-                            className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                        >
-                            Sign in
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            to="/"
-                            className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
-                            aria-label="Sign up"
-                            title="Sign up"
-                        >
-                            Sign up
-                        </Link>
-                    </li>
+                    {
+                        user ?
+                            <>
+                                <li>
+                                    <button
+                                        onClick={handleSignOut}
+                                        className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+                                        aria-label="Sign up"
+                                        title="Sign up"
+                                    >
+                                        Sign Out
+                                    </button>
+                                </li>
+                                <img src={user.photoURL} title={user.displayName} className='w-14 rounded-full' alt="" />
+                            </>
+                            :
+                            <li>
+                                <Link
+                                    to="/login"
+                                    aria-label="Sign in"
+                                    title="Sign in"
+                                    className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none "
+                                >
+                                    Sign in
+                                </Link>
+                            </li>
+                    }
+
+
                 </ul>
                 <div className="ml-auto lg:hidden">
                     <button
@@ -135,7 +155,7 @@ const NavBar = () => {
                                                 title="Our product"
                                                 className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                                             >
-                                               Courses
+                                                Courses
                                             </Link>
                                         </li>
                                         <li>
@@ -155,26 +175,27 @@ const NavBar = () => {
                                                 title="ProductBlog"
                                                 className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                                             >
-                                               Blog
+                                                Blog
                                             </Link>
                                         </li>
+                                        { }
                                         <li>
                                             <Link
                                                 to="/login"
-                                                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                                                className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none "
                                             >
                                                 Sign in
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link
-                                                to="/"
+                                            <button
+                                                onClick={handleSignOut}
                                                 className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
                                                 aria-label="Sign up"
                                                 title="Sign up"
                                             >
-                                                Sign up
-                                            </Link>
+                                                Sign Out
+                                            </button>
                                         </li>
                                     </ul>
                                 </nav>

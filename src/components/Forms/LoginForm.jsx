@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { FaBeer } from 'react-icons/fa';
+
+import { UserAuth } from '../../contexts/AuthProvider';
 const LoginForm = () => {
+
+  const { loginUser} = useContext(UserAuth)
 
   const HandleLogin = (e) => {
     e.preventDefault();
@@ -9,7 +12,15 @@ const LoginForm = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    console.log(email, password);
+    loginUser(email,password)
+    .then(result=>{
+      const user = result.user;
+      form.reset()
+      console.log(user);
+    })
+    .catch(error=>{
+      console.error(error)
+    })
   }
 
 
