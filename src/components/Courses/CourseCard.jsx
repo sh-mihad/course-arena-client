@@ -10,7 +10,7 @@ const CourseCard = ({ course }) => {
                 <h2 className="card-title">{title}</h2>
                 <p>{details.slice(0,40)}</p>
                 <div className="card-actions justify-end">
-                   <Link className='btn btn-primary' to={`/course/:${course.category_id}`}>Get Course</Link>
+                   <Link className='btn btn-primary' to={`/course/${course.category_id}`}>Get Course</Link>
                 </div>
             </div>
         </div>

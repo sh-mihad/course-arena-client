@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Blog from "../components/Blog/Blog";
+import CheckOut from "../components/CheckOut/CheckOut";
 import CourseDetails from "../components/CourseDetails/CourseDetails";
 import Courses from "../components/Courses/Courses";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
@@ -8,6 +9,7 @@ import LoginForm from "../components/Forms/LoginForm";
 import RegisterForm from "../components/Forms/RegisterForm/RegisterForm";
 import Home from "../components/home/Home";
 import Main from "../layout/Main";
+import PrivetRout from "./PrivetRouts/PrivetRout";
 
  const router = createBrowserRouter([
     {
@@ -25,7 +27,8 @@ import Main from "../layout/Main";
                 path:"/course/:id",
                 loader:({params})=>fetch(`https://course-arena-backend.vercel.app/catgories/${params.id}`),
                 element:<CourseDetails/>
-            }
+            },
+            {path:"/checkout",element:<PrivetRout>:<CheckOut/></PrivetRout>}
            
         ]
         

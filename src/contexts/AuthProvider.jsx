@@ -7,6 +7,7 @@ const AuthProvider = ({children}) => {
     
     const auth = getAuth(app)
     const [user,setUser] = useState(null);
+    const [loading,setLoadin] = useState(true)
 
     //createUser with Email & Password
     const createUser =(email,password)=>{
@@ -22,6 +23,7 @@ const AuthProvider = ({children}) => {
     useEffect(()=>{
         const unsbscirbe =onAuthStateChanged(auth,(createUser)=>{
             setUser(createUser)
+            setLoadin(false)
         });
 
         return ()=>{
@@ -65,6 +67,7 @@ const AuthProvider = ({children}) => {
         googleSignIn,
         githubSignIn,
         logOut,
+        loading
 
     }
 

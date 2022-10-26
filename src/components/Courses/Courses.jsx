@@ -22,7 +22,7 @@ const Courses = () => {
         <div className='flex w-full  bg-slate-200'> 
           <div className=' bg-white w-2/5 lg:w-3/12 pt-4 '>
             {
-                categories.map(category=><p className='mx-3 my-5 ml-5 hover:text-red-600  text-gray-800 font-semibold' key={category.id}><Link  to={`/course/:${category.id}`} >{category.name}</Link></p>)
+                categories.map(category=><p className='mx-3 my-5 ml-5 hover:text-red-600  text-gray-800 font-semibold' key={category.id}><Link  to={`/course/${category.id}`} >{category.name}</Link></p>)
             }
           </div>
           <div className=' p-5 w-full grid  lg:grid-cols-3 gap-4'>
