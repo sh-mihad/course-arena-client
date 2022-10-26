@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Blog from "../components/Blog/Blog";
+import CourseDetails from "../components/CourseDetails/CourseDetails";
 import Courses from "../components/Courses/Courses";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
 import Faq from "../components/FAQ/Faq";
@@ -20,6 +21,11 @@ import Main from "../layout/Main";
             { path:"faq",element:<Faq/>},
             { path:"login",element:<LoginForm/>},
             { path:"register",element:<RegisterForm/>},
+            {
+                path:"/course/:id",
+                loader:({params})=>fetch(`https://course-arena-backend.vercel.app/catgories/${params.id}`),
+                element:<CourseDetails/>
+            }
            
         ]
         
