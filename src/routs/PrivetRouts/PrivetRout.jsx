@@ -8,10 +8,10 @@ const PrivetRout = ({children}) => {
    const location = useLocation();
    // code start form here
     if(loading){
-        return <button className="btn loading">loading</button>
+        return <div className='text-center'><button className="btn loading ">loading</button></div>
     }
    if(!user){
-      return <Navigate to="/login" ></Navigate>
+      return <Navigate to="/login" state={{ from:location }} replace></Navigate>
    }
    return children
 };

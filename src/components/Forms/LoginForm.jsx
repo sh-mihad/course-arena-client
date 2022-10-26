@@ -1,11 +1,16 @@
 import React, { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { UserAuth } from '../../contexts/AuthProvider';
-const LoginForm = () => {
 
+
+const LoginForm = () => {
+  
   const { loginUser,googleSignIn,githubSignIn} = useContext(UserAuth)
   const navigate = useNavigate()
+  const location = useLocation();
+  const from =location.state?.from?.pathname || "/";
+
+
 
   const HandleLogin = (e) => {
     e.preventDefault();
@@ -16,8 +21,8 @@ const LoginForm = () => {
     loginUser(email,password)
     .then(result=>{
       const user = result.user;
-      navigate("/")
       form.reset()
+      navigate(from, { replace: true });
       // console.log(user);
     })
     .catch(error=>{
@@ -29,7 +34,7 @@ const LoginForm = () => {
     googleSignIn()
     .then(resutl=>{
       const user = resutl.user;
-      navigate("/")
+      navigate(from, { replace: true });
       // console.log(user)
     })
     .catch(error=>{console.log(error)})
@@ -39,7 +44,7 @@ const LoginForm = () => {
     githubSignIn()
     .then(result=>{
       const user = result.user;
-      navigate("/")
+      navigate(from, { replace: true });
 
     })
     .catch(error=>{

@@ -11,11 +11,13 @@ const AuthProvider = ({children}) => {
 
     //createUser with Email & Password
     const createUser =(email,password)=>{
+        setLoadin(true)
       return createUserWithEmailAndPassword(auth,email,password)
     }
 
     // login user 
     const loginUser =(email,password)=>{
+        setLoadin(true)
         return signInWithEmailAndPassword(auth,email,password)
     }
 
@@ -41,12 +43,14 @@ const AuthProvider = ({children}) => {
 
     //Log out user 
     const logOut =()=>{
+
         return signOut(auth)
     }
 
     // sign with Google 
     const googleAuthProvider = new GoogleAuthProvider();
     const googleSignIn =()=>{
+        setLoadin(true)
       return  signInWithPopup(auth,googleAuthProvider)
     }
 
@@ -55,6 +59,7 @@ const AuthProvider = ({children}) => {
     const githubProvider = new GithubAuthProvider();
 
     const githubSignIn =()=>{
+        setLoadin(true)
         return signInWithPopup(auth,githubProvider)
     }
     
