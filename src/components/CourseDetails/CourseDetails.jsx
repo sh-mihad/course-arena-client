@@ -3,9 +3,9 @@ import { Link, useLoaderData } from 'react-router-dom';
 
 const CourseDetails = () => {
     const courseDetails = useLoaderData();
-    // console.log(courseDetails[0]);
-    const{image_url,title,details,rating,instractor}= courseDetails[0];
-    console.log(instractor)
+    console.log(courseDetails[0]);
+    const{_id,image_url,title,details,instractor}= courseDetails[0];
+    // console.log(instractor)
 
     return (
         <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
@@ -35,7 +35,7 @@ const CourseDetails = () => {
               <p>Publish Date : <span className='font-bold'>{instractor.published_date}</span></p>
               </div>
              <div className='mt-10'>
-             <Link to="/checkout" className="btn btn-primary">Get Premium Access!</Link>
+             <Link to={`/checkout/${_id}`} className="btn btn-primary">Get Premium Access!</Link>
              </div>
             </div>
           </div>

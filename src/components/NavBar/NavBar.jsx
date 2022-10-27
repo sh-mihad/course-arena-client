@@ -1,6 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { UserAuth } from '../../contexts/AuthProvider';
+import {CiDark} from 'react-icons/ci';
+import {MdDarkMode} from 'react-icons/md';
+
 
 const NavBar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,10 +17,22 @@ const NavBar = () => {
     }
 
 
+    const [light,setLight] = useState(true);
+    console.log(light)
+
+
     return (
         <div className="px-4 py-5  mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
             <div className="relative flex grid items-center grid-cols-2 lg:grid-cols-3">
                 <ul className=" items-center hidden space-x-8 lg:flex">
+                    <li>
+                        <Link
+                            to="/"
+                            className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        >
+                           Home
+                        </Link>
+                    </li>
                     <li>
                         <Link
                             to="/course"
@@ -74,7 +89,7 @@ const NavBar = () => {
                                         Sign Out
                                     </button>
                                 </li>
-                                <img src={user.photoURL} title={user.displayName} className='w-14 rounded-full' alt="" />
+                                <img src={user.photoURL} className='w-14 rounded-full tooltip' title={user.displayName}  alt="" />
                             </>
                             :
                             <li>
@@ -88,6 +103,15 @@ const NavBar = () => {
                                 </Link>
                             </li>
                     }
+
+                    <li className='hidden lg:block'>
+                    <button className='text-3xl' onClick={()=>setLight(!light)}>
+                        {light?<MdDarkMode/>:<CiDark/>}
+                        </button>
+                    </li>
+                    {/* <li>
+                    <button><MdDarkMode/></button>
+                    </li> */}
 
 
                 </ul>
@@ -148,6 +172,14 @@ const NavBar = () => {
                                 </div>
                                 <nav>
                                     <ul className="space-y-4">
+                                        <li>
+                                            <Link
+                                                to="/"
+                                                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                                            >
+                                                Home
+                                            </Link>
+                                        </li>
                                         <li>
                                             <Link
                                                 to="/course"

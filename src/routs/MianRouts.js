@@ -28,7 +28,12 @@ import PrivetRout from "./PrivetRouts/PrivetRout";
                 loader:({params})=>fetch(`https://course-arena-backend.vercel.app/catgories/${params.id}`),
                 element:<CourseDetails/>
             },
-            {path:"/checkout",element:<PrivetRout>:<CheckOut/></PrivetRout>}
+            // {path:"/checkout",element:<PrivetRout>:<CheckOut/></PrivetRout>},
+            {
+                path:'/checkout/:id',
+                loader : ({params})=> fetch(`https://course-arena-backend.vercel.app/course/${params.id}`),
+                element:<PrivetRout>:<CheckOut/></PrivetRout>
+            }
            
         ]
         
