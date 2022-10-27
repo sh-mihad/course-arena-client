@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { UserAuth } from '../../../contexts/AuthProvider';
 
 const RegisterForm = () => {
 
- const {createUser,profileUpdate} = useContext(UserAuth)
+ const {createUser,profileUpdate,googleSignIn,githubSignIn} = useContext(UserAuth);
+ const navigate = useNavigate();
+ const location = useLocation();
+ const from =location.state?.from?.pathname || "/";
 
     const handleRegister =(e)=>{
         e.preventDefault();
@@ -31,6 +34,30 @@ const RegisterForm = () => {
         .then(()=>{})
         .catch((error)=>{console.error(error)})
       }
+
+
+      const handleGoogleSignIn =()=>{
+        googleSignIn()
+        .then(resutl=>{
+          const user = resutl.user;
+          navigate(from, { replace: true });
+          // console.log(user)
+        })
+        .catch(error=>{console.log(error)})
+      }
+    
+      const handleGithubSignIn =()=>{
+        githubSignIn()
+        .then(result=>{
+          const user = result.user;
+          navigate(from, { replace: true });
+    
+        })
+        .catch(error=>{
+          console.log(error);
+        })
+      }
+    
 
     return (
         <div className="hero min-h-screen  bg-base-200">
@@ -69,8 +96,8 @@ const RegisterForm = () => {
                 <button className="btn btn-primary">Register</button>
               </div>
             </form>
-            <button className=" btn btn-outline w-10/12 mx-auto mb-3">Sign With Google</button>
-            <button className=" btn btn-outline  w-10/12 mx-auto mb-6">Sign With Github</button>
+            <button onClick={handleGoogleSignIn} className=" btn btn-outline w-10/12 mx-auto mb-3">Sign With Google</button>
+            <button onClick={handleGithubSignIn} className=" btn btn-outline  w-10/12 mx-auto mb-6">Sign With Github</button>
           </div>
         </div>
       </div>

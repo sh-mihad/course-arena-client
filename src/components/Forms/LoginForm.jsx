@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { UserAuth } from '../../contexts/AuthProvider';
 
@@ -9,10 +9,12 @@ const LoginForm = () => {
   const navigate = useNavigate()
   const location = useLocation();
   const from =location.state?.from?.pathname || "/";
+  const [error,setError] = useState("")
 
 
 
   const HandleLogin = (e) => {
+    setError("")
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
@@ -26,7 +28,7 @@ const LoginForm = () => {
       // console.log(user);
     })
     .catch(error=>{
-      console.error(error)
+      setError(error.message)
     })
   }
 
@@ -74,6 +76,9 @@ const LoginForm = () => {
                 <Link to="/register" className='text-blue-400'>Create an New Accout</Link>
               </label>
             </div>
+            <p className='text-red-600'>
+              {error}
+            </p>
             <div className="form-control mt-6">
               <button className="btn btn-primary">Login</button>
             </div>

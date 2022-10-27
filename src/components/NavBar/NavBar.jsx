@@ -22,7 +22,7 @@ const NavBar = () => {
 
 
     return (
-        <div className="px-4 py-5  mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+        <div className="px-4 py-5 z-50  mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
             <div className="relative flex grid items-center grid-cols-2 lg:grid-cols-3">
                 <ul className=" items-center hidden space-x-8 lg:flex">
                     <li>
