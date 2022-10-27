@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Course Arena Online Course Project
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
